@@ -2,7 +2,7 @@ services:
 - type: web
   name: wordpress
   env: docker
-  dockerfilePath: ./Dockerfile-6-1
+  dockerfilePath: ./version-6-1/Dockerfile
   plan: starter
   autoDeploy: false
   disk:

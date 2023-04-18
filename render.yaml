@@ -3,6 +3,7 @@ services:
 - type: pserv
   name: mysql-wordpress
   env: docker
+  dockerfilePath: ./Dockerfile-mysql
   plan: standard
   autoDeploy: false
   disk:

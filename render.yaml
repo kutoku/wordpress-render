@@ -39,22 +39,22 @@ services:
     value: wordpress_6_0_
   - key: WORDPRESS_DB_HOST
     fromService:
-      name: wordpress-mysql
+      name: mysql-wordpress
       type: pserv
       property: host
   - key: WORDPRESS_DB_NAME
     fromService:
-      name: wordpress-mysql
+      name: mysql-wordpress
       type: pserv
       envVarKey: MYSQL_DATABASE
   - key: WORDPRESS_DB_USER
     fromService:
-      name: wordpress-mysql
+      name: mysql-wordpress
       type: pserv
       envVarKey: MYSQL_USER
   - key: WORDPRESS_DB_PASSWORD
     fromService:
-      name: wordpress-mysql
+      name: mysql-wordpress
       type: pserv
       envVarKey: MYSQL_PASSWORD
 
@@ -77,21 +77,21 @@ services:
 #     value: wordpress_5_0_
 #   - key: WORDPRESS_DB_HOST
 #     fromService:
-#       name: wordpress-mysql
+#       name: mysql-wordpress
 #       type: pserv
 #       property: host
 #   - key: WORDPRESS_DB_NAME
 #     fromService:
-#       name: wordpress-mysql
+#       name: mysql-wordpress
 #       type: pserv
 #       envVarKey: MYSQL_DATABASE
 #   - key: WORDPRESS_DB_USER
 #     fromService:
-#       name: wordpress-mysql
+#       name: mysql-wordpress
 #       type: pserv
 #       envVarKey: MYSQL_USER
 #   - key: WORDPRESS_DB_PASSWORD
 #     fromService:
-#       name: wordpress-mysql
+#       name: mysql-wordpress
 #       type: pserv
 #       envVarKey: MYSQL_PASSWORD

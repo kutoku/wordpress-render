@@ -3,7 +3,7 @@
 # https://community.render.com/t/docker-deployment-is-stuck/7858
 FROM wordpress:5.0.0-php7.2-apache
 
-RUN apt-get update && apt-get install -y magic-wormhole
+#RUN apt-get update && apt-get install -y magic-wormhole
 
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www

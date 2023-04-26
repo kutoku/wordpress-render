@@ -30,8 +30,8 @@ services:
     name: wordpress
     mountPath: /var/www/html
     sizeGB: 20
-  domains:
-    - wordpress.kutoku-publisher.com
+  # domains:
+  #   - wordpress.kutoku-publisher.com
   envVars:
   - key: PORT
     value: 80

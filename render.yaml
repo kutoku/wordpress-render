@@ -21,9 +21,47 @@ services:
     generateValue: true
 
 - type: web
-  name: wordpress-6-0
+  name: wordpress-publisher
   env: docker
-  dockerfilePath: ./Dockerfile-6-0
+  dockerfilePath: ./Dockerfile-6-2
+  plan: starter
+  autoDeploy: false
+  disk:
+    name: wordpress
+    mountPath: /var/www/html
+    sizeGB: 20
+  domains:
+    - wordpress.kutoku-publisher.com
+  envVars:
+  - key: PORT
+    value: 80
+  - key: WORDPRESS_TABLE_PREFIX
+    value: wordpress_publisher_
+  - key: WORDPRESS_DB_HOST
+    fromService:
+      name: mysql-wordpress
+      type: pserv
+      property: host
+  - key: WORDPRESS_DB_NAME
+    fromService:
+      name: mysql-wordpress
+      type: pserv
+      envVarKey: MYSQL_DATABASE
+  - key: WORDPRESS_DB_USER
+    fromService:
+      name: mysql-wordpress
+      type: pserv
+      envVarKey: MYSQL_USER
+  - key: WORDPRESS_DB_PASSWORD
+    fromService:
+      name: mysql-wordpress
+      type: pserv
+      envVarKey: MYSQL_PASSWORD
+
+- type: web
+  name: wordpress-6-2
+  env: docker
+  dockerfilePath: ./Dockerfile-6-2
   plan: starter
   autoDeploy: false
   disk:
@@ -36,7 +74,7 @@ services:
   - key: PORT
     value: 80
   - key: WORDPRESS_TABLE_PREFIX
-    value: wordpress_6_0_
+    value: wordpress_6_2_
   - key: WORDPRESS_DB_HOST
     fromService:
       name: mysql-wordpress

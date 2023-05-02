@@ -12,6 +12,9 @@ COPY config/woocommerce.3.7.3 /usr/src/wordpress/wp-content/plugins/woocommerce
 # Remove bundled plugins (first build only)
 RUN rm -rf /usr/src/wordpress/wp-content/plugins/akismet /usr/src/wordpress/wp-content/plugins/hello.php
 
+# Install Vim
+RUN apt update && apt install -y --no-install-recommends vim && rm -rf /var/lib/apt/lists/*
+
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www
 USER www-data:www-data

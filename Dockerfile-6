@@ -6,8 +6,11 @@ FROM wordpress:6.0.0-php8.1-apache
 # Allow larger file (plugin) uploads
 COPY config/php.ini $PHP_INI_DIR/conf.d/php.ini
 
-# Pre-install WooCommerce
-COPY config/woocommerce.7.6.0 /var/www/html/wp-content/plugins/woocommerce
+# Pre-install WooCommerce (first build only)
+COPY config/woocommerce.7.6.0 /usr/src/wordpress/wp-content/plugins/woocommerce
+
+# Remove bundled plugins (first build only)
+RUN rm -rf /usr/src/wordpress/wp-content/plugins/akismet /usr/src/wordpress/wp-content/plugins/hello.php
 
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www

@@ -14,7 +14,7 @@ RUN rm -rf /usr/src/wordpress/wp-content/plugins/akismet /usr/src/wordpress/wp-c
 
 # Install Vim
 # RUN apt-get -y update
-RUN apt-get install -y vim
+# RUN apt-get install -y vim
 
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www

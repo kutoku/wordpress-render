@@ -1,13 +1,13 @@
 services:
 
 - type: pserv
-  name: mysql-wordpress
+  name: mysql
   env: docker
   dockerfilePath: ./Dockerfile-mysql
   plan: standard
   autoDeploy: false
   disk:
-    name: mysql-wordpress
+    name: mysql
     mountPath: /var/lib/mysql
     sizeGB: 20
   envVars:
@@ -21,9 +21,9 @@ services:
     generateValue: true
 
 - type: web
-  name: wordpress-publisher
+  name: wp-latest-publisher
   env: docker
-  dockerfilePath: ./Dockerfile-6-0
+  dockerfilePath: ./Dockerfile-latest
   plan: starter
   autoDeploy: false
   disk:
@@ -36,32 +36,32 @@ services:
   - key: PORT
     value: 80
   - key: WORDPRESS_TABLE_PREFIX
-    value: wordpress_publisher_
+    value: wp_latest_publisher_
   - key: WORDPRESS_DB_HOST
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       property: host
   - key: WORDPRESS_DB_NAME
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_DATABASE
   - key: WORDPRESS_DB_USER
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_USER
   - key: WORDPRESS_DB_PASSWORD
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_PASSWORD
 
 - type: web
-  name: wordpress-6-0
+  name: wp-5-merchant
   env: docker
-  dockerfilePath: ./Dockerfile-6-0
+  dockerfilePath: ./Dockerfile-5
   plan: starter
   autoDeploy: false
   disk:
@@ -69,37 +69,37 @@ services:
     mountPath: /var/www/html
     sizeGB: 20
   domains:
-    - wordpress-6-0.kutoku-development.com
+    - wp5.kutoku-merchant.com
   envVars:
   - key: PORT
     value: 80
   - key: WORDPRESS_TABLE_PREFIX
-    value: wordpress_6_0_
+    value: wp_5_merchant_
   - key: WORDPRESS_DB_HOST
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       property: host
   - key: WORDPRESS_DB_NAME
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_DATABASE
   - key: WORDPRESS_DB_USER
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_USER
   - key: WORDPRESS_DB_PASSWORD
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_PASSWORD
 
 - type: web
-  name: wordpress-5-0
+  name: wp-6-merchant
   env: docker
-  dockerfilePath: ./Dockerfile-5-0
+  dockerfilePath: ./Dockerfile-6
   plan: starter
   autoDeploy: false
   disk:
@@ -107,29 +107,29 @@ services:
     mountPath: /var/www/html
     sizeGB: 20
   domains:
-    - wordpress-5-0.kutoku-development.com
+    - wp6.kutoku-merchant.com
   envVars:
   - key: PORT
     value: 80
   - key: WORDPRESS_TABLE_PREFIX
-    value: wordpress_5_0_
+    value: wp_6_merchant_
   - key: WORDPRESS_DB_HOST
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       property: host
   - key: WORDPRESS_DB_NAME
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_DATABASE
   - key: WORDPRESS_DB_USER
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_USER
   - key: WORDPRESS_DB_PASSWORD
     fromService:
-      name: mysql-wordpress
+      name: mysql
       type: pserv
       envVarKey: MYSQL_PASSWORD

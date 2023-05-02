@@ -1,0 +1,14 @@
+# You can change this to a different version of Wordpress available at
+# https://hub.docker.com/_/wordpress
+# https://community.render.com/t/docker-deployment-is-stuck/7858
+FROM wordpress:5.0.0-php7.2-apache
+
+# Allow larger file (plugin) uploads
+COPY config/php.ini $PHP_INI_DIR/conf.d/php.ini
+
+# Pre-install WooCommerce
+COPY config/woocommerce.3.7.3 /var/www/html/wp-content/plugins/woocommerce
+
+RUN usermod -s /bin/bash www-data
+RUN chown www-data:www-data /var/www
+USER www-data:www-data

@@ -13,7 +13,8 @@ COPY config/woocommerce.3.7.3 /usr/src/wordpress/wp-content/plugins/woocommerce
 RUN rm -rf /usr/src/wordpress/wp-content/plugins/akismet /usr/src/wordpress/wp-content/plugins/hello.php
 
 # Install Vim
-RUN apt update && apt install -y --no-install-recommends vim && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y vim
 
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www
